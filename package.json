@@ -1,0 +1,25 @@
+{
+  "name": "wot_server",
+  "version": "0.0.1",
+  "description": "Web of Things Server exposing devices connected to the Omnnia Gateway",
+  "main": "index.js",
+  "author": "omnianetwork",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "4.4.3",
+    "wot-typescript-definitions": "0.8.0-SNAPSHOT.23",
+    "@types/node": "18.14.2",
+    "tslint": "5.12.1"
+  },
+  "dependencies": {
+      "@node-wot/binding-http": "0.8.x",
+      "@node-wot/core": "0.8.x"
+  },
+  "optionalDependencies": {},
+  "scripts": {
+      "build": "tsc -b",
+      "buildAll": "npm install; tsc;",
+      "start": "node index.js",
+      "clean": "rm -rf node_modules; rm -rf dist; rm -rf package-lock.json"
+  }
+}
