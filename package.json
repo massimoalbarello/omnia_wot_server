@@ -8,7 +8,7 @@
   "devDependencies": {
     "typescript": "4.4.3",
     "wot-typescript-definitions": "0.8.0-SNAPSHOT.23",
-    "@types/node": "18.14.2",
+    "@types/node": "16.4.13",
     "tslint": "5.12.1"
   },
   "dependencies": {
