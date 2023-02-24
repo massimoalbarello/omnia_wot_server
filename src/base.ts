@@ -27,8 +27,6 @@ export class WotDevice {
         },
     };
 
-    private myProperty: WoT.InteractionInput;
-
     constructor(deviceWoT: typeof WoT, tdDirectory?: string) {
         this.deviceWoT = deviceWoT;
     }
@@ -46,18 +44,12 @@ export class WotDevice {
     }
 
     private initializeProperties() {
-        this.myProperty = "Hello world";
         this.thing.setPropertyReadHandler("myProperty", this.myPropertyReadHandler);
-        this.thing.setPropertyWriteHandler("myProperty", this.myPropertyWriteHandler);
     }
 
     private async myPropertyReadHandler(options?: WoT.InteractionOptions) {
         console.log("Reading property");
-        return this.myProperty;
-    }
-
-    private async myPropertyWriteHandler(inputData: WoT.InteractionOutput, options?: WoT.InteractionOptions) {
-        console.log("Writing property");
-        this.myProperty = await inputData.value();
+        // read sensor value
+        return "sensor value";
     }
 }
