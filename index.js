@@ -11,5 +11,5 @@ servient.addServer(httpServer);
 
 servient.start().then((WoT) => {
     wotDevice = new WotDevice(WoT);
-    wotDevice.startDevice()
+    wotDevice.startDevice();
 });

@@ -32,11 +32,11 @@ export class WotDevice {
     }
 
     public async startDevice() {
-        const exposedThing = await this.deviceWoT.produce(this.thingModel);
+        const producedThing = await this.deviceWoT.produce(this.thingModel);
         console.log(`Produced Thing: ${this.thingModel.title}`);
 
-        this.thing = exposedThing;
-        this.td = exposedThing.getThingDescription();
+        this.thing = producedThing;
+        this.td = producedThing.getThingDescription();
         this.initializeProperties();
 
         await this.thing.expose();
