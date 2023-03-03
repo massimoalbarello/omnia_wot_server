@@ -1,25 +1,20 @@
-Secp256k1KeyIdentity = require("@dfinity/identity-secp256k1").Secp256k1KeyIdentity;
 fetch = require("isomorphic-fetch");
+crypto = require("node:crypto");
 
 Servient = require("@node-wot/core").Servient;
 HttpServer = require("@node-wot/binding-http").HttpServer;
 
 WotDevice = require("./dist/base.js").WotDevice;
 
-const identity = Secp256k1KeyIdentity.generate();
-console.log(identity._publicKey);
 
-const message = 'Hello, world!';
-const signature = identity.sign(message);
-console.log(signature);
+
+const nonce = crypto.randomBytes(12).toString("hex");
 
 const body = {
-    "public_key": "public key",
-    "signature": "signature",
-    "message": message
+    "nonce": nonce,
 };
 
-fetch('omnia_backend_canister_url', {
+fetch('http://127.0.0.1:4943/?canisterId=<canister_id>', {
     method: "POST",
     headers: {
         "x-real-ip": "127.0.0.1"    // this header is generated automatically by the boundary node when canister is deployed on the IC. Set it only for testing
@@ -36,13 +31,13 @@ fetch('omnia_backend_canister_url', {
         console.log(res);
     });
 
-var httpServer = new HttpServer({ port: 8080 });
+// var httpServer = new HttpServer({ port: 8080 });
 
-var servient = new Servient();
+// var servient = new Servient();
 
-servient.addServer(httpServer);
+// servient.addServer(httpServer);
 
-servient.start().then((WoT) => {
-    wotDevice = new WotDevice(WoT);
-    wotDevice.startDevice();
-});
+// servient.start().then((WoT) => {
+//     wotDevice = new WotDevice(WoT);
+//     wotDevice.startDevice();
+// });
